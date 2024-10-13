@@ -3,6 +3,7 @@ const extensionSDK = SDK();
 
 // 로그 메시지를 HTML에 추가하는 함수
 function addLog(message) {
+    return;
     const logContainer = document.getElementById("log");
     const logEntry = document.createElement("div");
     logEntry.textContent = message;

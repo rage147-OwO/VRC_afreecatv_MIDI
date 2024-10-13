@@ -15,6 +15,8 @@ import time
 import threading
 import mido.backends.rtmidi
 
+
+sys.stdout=open(os.devnull, 'w')
 global port
 app = FastAPI()
 
@@ -129,7 +131,7 @@ def on_submit():
 def on_exit():
     # 모든 프로세스를 종료
     print("프로그램이 종료됩니다.")
-    if port:  # MIDI 포트가 열려 있다면 닫기
+    if port is not None:  # MIDI 포트가 열려 있다면 닫기
         port.close()
     root.quit()  # Tkinter 메인 루프 종료
     sys.exit()  # 프로그램 종료
@@ -143,6 +145,7 @@ if __name__ == "__main__":
     # 현재 시스템의 MAC 주소 기반으로 시리얼 생성
     mac_address = get_mac_address()
     serial = generate_serial(mac_address)
+    port = None
 
     # 인증 UI 생성
     root = Tk()

@@ -44,6 +44,7 @@ async def log_message(log: dict):
 
         # count 값을 추출
         count = log_data.get("count", None)
+        print(count)  # 디버깅용 출력
         if count is None:
             return JSONResponse(status_code=400, content={"error": "Count not found in log"})
         
